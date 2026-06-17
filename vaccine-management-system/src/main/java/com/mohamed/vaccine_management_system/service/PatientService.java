@@ -20,4 +20,20 @@ public class PatientService {
     public List<Patient> getAllPatients() {
         return repository.findAll();
     }
+
+    public Patient getPatientById(long id) { return repository.findById(id)
+            .orElseThrow(() ->
+                    new RuntimeException("Patient not found")); }
+
+    public  Patient updatePatient(Long id, Patient patient ) {
+        Patient existingPatient = repository.findById(id).orElseThrow(() ->
+                new RuntimeException("Patient not found"));
+
+        if (existingPatient != null) {
+            existingPatient.setName(patient.getName());
+            existingPatient.setEmail(patient.getEmail());
+            existingPatient.setPhone(patient.getPhone());
+        }
+        return repository.save(existingPatient);
+    }
 }

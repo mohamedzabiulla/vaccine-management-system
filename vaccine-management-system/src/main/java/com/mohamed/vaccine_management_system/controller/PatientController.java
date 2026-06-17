@@ -25,4 +25,12 @@ public class PatientController {
     public List<Patient> getPatients() {
         return service.getAllPatients();
     }
+
+    @GetMapping("/{id}")
+    public Patient getPatientById(@PathVariable long id) {return service.getPatientById(id);}
+
+    @PutMapping("/{id}")
+    public Patient updatePatient(@PathVariable long id, @RequestBody Patient patient) {
+        return service.updatePatient(id, patient);
+    }
 }
