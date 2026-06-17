@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/patients")
@@ -15,9 +16,10 @@ public class PatientController {
     private PatientService service;
 
     @PostMapping
-    public Patient addPatient(@RequestBody Patient patient) {
+    public Patient addPatient(@Valid @RequestBody Patient patient) {
         return service.savePatient(patient);
     }
+
 
     @GetMapping
     public List<Patient> getPatients() {
